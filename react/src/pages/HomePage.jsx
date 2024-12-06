@@ -1,10 +1,16 @@
+import hero from "../assets/hero.jpg";
 
 
 const HomePage = () => {
   return (
     <div className="container">
-      <h1>welcome to our store</h1>
-
+      <img
+        src={hero}
+        alt="hero models with clothing"
+        width="800px"
+        height="400px"
+      />
+      <a href="/products" className="shop-now-btn">Shop Now</a>
     </div>
   );
 };

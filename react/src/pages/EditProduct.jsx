@@ -13,9 +13,8 @@ const EditProduct = () => {
   });
 
   useEffect(() => {
-    
     axios
-      .get(`http://localhost:5000/api/products/${id}`)
+      .get(`https://fakestoreapi.com/products/${id}`)
       .then((response) => {
         setFormData(response.data);
       })
@@ -28,12 +27,11 @@ const EditProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    
     axios
-      .put(`http://localhost:5000/api/products/${id}`, formData)
+      .put(`http://localhost:5001/api/products/${id}`, formData)
       .then(() => {
         alert("Product updated successfully!");
-        navigate("/products"); 
+        navigate("/products");
       })
       .catch((err) => {
         alert("Failed to update product.");

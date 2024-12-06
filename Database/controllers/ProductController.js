@@ -9,6 +9,23 @@ exports.getAllProducts = async (req, res) => {
   }
 };
 
+exports.createProduct = async (req, res) => {
+  try {
+    const newProduct = new Product({
+      title: req.body.title,
+      description: req.body.description,
+      price: req.body.price,
+      image: req.body.image,
+    });
+
+    const savedProduct = await newProduct.save();
+    res.status(201).json(savedProduct);
+  } catch (error) {
+    console.error("Error creating product:", error);
+    res.status(500).json({ message: "Failed to create product" });
+  }
+};
+
 exports.updateProduct = async (req, res) => {
   try {
     const updatedProduct = await Product.findByIdAndUpdate(
@@ -20,6 +37,21 @@ exports.updateProduct = async (req, res) => {
       return res.status(404).json({ message: "Product not found" });
     }
     res.json(updatedProduct);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+exports.deleteProduct = async (req, res) => {
+  try {
+    const deletedProduct = await Product.findByIdAndDelete(req.params.id);
+    if (!deletedProduct) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+    res.json({
+      message: "Product deleted successfully",
+      product: deletedProduct,
+    });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

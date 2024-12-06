@@ -16,7 +16,7 @@ const AddProduct = () => {
 
     
     axios
-      .post("http://localhost:5000/api/products", formData)
+      .post("http://localhost:5001/api/products", formData)
       .then(() => {
         alert("Product added successfully!");
         navigate("/products"); 
@@ -52,7 +52,7 @@ const AddProduct = () => {
         />
         <input
           type="text"
-          placeholder="Image URL"
+          placeholder="image url"
           value={formData.image}
           onChange={(e) => setFormData({ ...formData, image: e.target.value })}
         />

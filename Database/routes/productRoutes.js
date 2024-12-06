@@ -1,9 +1,9 @@
-const express = require('express');
-const Product = require('../models/Product');
+const express = require("express");
+const Product = require("../models/Products");
 const router = express.Router();
 
-// GET all products
-router.get('/', async (req, res) => {
+
+router.get("/", async (req, res) => {
   try {
     const products = await Product.find();
     res.json(products);
@@ -12,12 +12,12 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET product by ID
-router.get('/:id', async (req, res) => {
+
+router.get("/:id", async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
     if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ message: "Product not found" });
     }
     res.json(product);
   } catch (error) {
@@ -26,7 +26,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // CREATE
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   const product = new Product({
     title: req.body.title,
     description: req.body.description,
@@ -42,12 +42,14 @@ router.post('/', async (req, res) => {
   }
 });
 
-// UPDATE 
-router.put('/:id', async (req, res) => {
+// UPDATE
+router.put("/:id", async (req, res) => {
   try {
-    const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
     if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ message: "Product not found" });
     }
     res.json(product);
   } catch (error) {
@@ -55,14 +57,14 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// DELETE 
-router.delete('/:id', async (req, res) => {
+// DELETE
+router.delete("/:id", async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
     if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ message: "Product not found" });
     }
-    res.json({ message: 'Product deleted' });
+    res.json({ message: "Product deleted" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
