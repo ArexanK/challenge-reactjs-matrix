@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -17,33 +18,26 @@ const ProductList = () => {
   const handleDelete = (id) => {
     axios
       .delete(`http://localhost:5000/api/products/${id}`)
-      .then((response) => {
+      .then(() => {
         setProducts(products.filter((product) => product.id !== id));
-        console.log("Product deleted:", response.data);
+        alert("Product deleted successfully!");
       })
       .catch((error) => console.error("Error deleting product:", error));
   };
 
-  const handleShow = (id) => {
-    console.log(`Show product with id: ${id}`);
-  };
-
-  const handleEdit = (id) => {
-    console.log(`Show product with id: ${id}`);
-  };
-
   return (
     <div className="container">
-      <h2>Products</h2>
-      <Link to="/add-product" className="add-product-link">
-        Add New Product
-      </Link>
-
-      <table className="products-table">
+      <div className="header">
+        <h2>Product List</h2>
+        <button onClick={() => navigate("/products/add")}>
+          Add New Product
+        </button>
+      </div>
+      <table>
         <thead>
           <tr>
             <th>Image</th>
-            <th>Title</th>
+            <th>Name</th>
             <th>Description</th>
             <th>Price</th>
             <th>Actions</th>
@@ -56,15 +50,19 @@ const ProductList = () => {
                 <img
                   src={product.image}
                   alt={product.title}
-                  className="product-image"
+                  style={{ width: "100px", height: "100px" }}
                 />
               </td>
               <td>{product.title}</td>
               <td>{product.description}</td>
               <td>${product.price}</td>
               <td>
-                <button onClick={() => handleShow(product.id)}>Show</button>
-                <button onClick={() => handleEdit(product.id)}>Edit</button>
+                <Link to={`/products/${product.id}`}>Show</Link>
+                <button
+                  onClick={() => navigate(`/products/edit/${product.id}`)}
+                >
+                  Edit
+                </button>
                 <button onClick={() => handleDelete(product.id)}>Delete</button>
               </td>
             </tr>

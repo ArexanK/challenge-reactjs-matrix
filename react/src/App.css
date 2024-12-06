@@ -236,3 +236,34 @@ button.show-btn {
 button.show-btn:hover {
   background-color: #218838;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+form label {
+  font-weight: bold;
+}
+
+form input, form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+}
+
+form button {
+  padding: 10px;
+  background-color: var(--primary-bg);
+  color: var(--link-color);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: var(--link-hover);
+}

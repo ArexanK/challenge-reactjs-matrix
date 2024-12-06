@@ -1,63 +1,60 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [image, setImage] = useState("");
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    price: "",
+    image: "",
+  });
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newProduct = {
-      title,
-      description,
-      price,
-      image,
-    };
-
+    
     axios
-      .post("http://localhost:5000/api/products", newProduct)
-      .then((response) => {
-        console.log("Product added:", response.data);
+      .post("http://localhost:5000/api/products", formData)
+      .then(() => {
+        alert("Product added successfully!");
+        navigate("/products"); 
       })
-      .catch((error) => console.error("Error adding product:", error));
+      .catch((err) => {
+        alert("Failed to add product.");
+        console.error(err);
+      });
   };
 
   return (
     <div>
-      <h2>Add Product</h2>
+      <h2>Add New Product</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={formData.title}
+          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
         />
-        <input
-          type="text"
+        <textarea
           placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={formData.description}
+          onChange={(e) =>
+            setFormData({ ...formData, description: e.target.value })
+          }
         />
         <input
           type="number"
           placeholder="Price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="Price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
+          value={formData.price}
+          onChange={(e) => setFormData({ ...formData, price: e.target.value })}
         />
         <input
           type="text"
           placeholder="Image URL"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
+          value={formData.image}
+          onChange={(e) => setFormData({ ...formData, image: e.target.value })}
         />
         <button type="submit">Add Product</button>
       </form>
