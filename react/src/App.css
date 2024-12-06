@@ -1,0 +1,238 @@
+:root {
+  --primary-bg: #003366;
+  --secondary-bg: #f4f4f4;
+  --text-color: #333;
+  --link-color: white;
+  --link-hover: #ffcc00;
+  --card-hover-color: rgba(0, 0, 0, 0.1);
+  --font-family: Arial, sans-serif;
+  --padding: 20px;
+  --border-radius: 8px;
+  --max-width: 1200px;
+}
+
+body {
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--secondary-bg);
+}
+
+header {
+  background-color: var(--primary-bg);
+  color: var(--link-color);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.header-logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--link-color);
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin: 0 20px;
+}
+
+nav ul li a {
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  color: var(--link-hover);
+}
+
+footer {
+  background-color: var(--primary-bg);
+  color: var(--link-color);
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+footer p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--padding);
+  width: 100%;
+}
+
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.products-table th,
+.products-table td {
+  padding: 15px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.products-table th {
+  background-color: var(--primary-bg);
+  color: var(--link-color);
+}
+
+.product-card img,
+.product-detail img {
+  object-fit: cover;
+  border-radius: var(--border-radius);
+}
+
+.product-image {
+  width: 100px;
+  height: 100px;
+}
+
+.product-card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px var(--card-hover-color);
+}
+
+.product-card h3 {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.product-card p {
+  font-size: 14px;
+  color: #555;
+  margin-top: 10px;
+}
+
+.product-card a {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: var(--primary-bg);
+  color: var(--link-color);
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.product-card a:hover {
+  background-color: var(--link-hover);
+}
+
+.product-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: var(--padding);
+  margin-top: 20px;
+}
+
+.product-info {
+  flex: 1;
+  max-width: 600px;
+}
+
+.product-info h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.product-info p {
+  font-size: 18px;
+  color: var(--text-color);
+  margin: 10px 0;
+}
+
+.product-info .price {
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--text-color);
+  margin: 20px 0;
+}
+
+.product-info .description {
+  font-size: 16px;
+  color: #555;
+  margin-top: 15px;
+}
+
+.product-info .buy-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: var(--primary-bg);
+  color: var(--link-color);
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.product-info .buy-btn:hover {
+  background-color: var(--link-hover);
+}
+
+.add-product-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  background-color: #28a745;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.add-product-link:hover {
+  background-color: #218838;
+}
+
+button {
+  padding: 8px 12px;
+  margin-right: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+button.show-btn {
+  background-color: #28a745;
+}
+
+button.show-btn:hover {
+  background-color: #218838;
+}
