@@ -5,7 +5,6 @@ import axios from "axios";
 const ProductList = () => {
   const [products, setProducts] = useState([]);
 
-  // Fetch products from the API
   useEffect(() => {
     axios
       .get("https://fakestoreapi.com/products")
@@ -15,7 +14,6 @@ const ProductList = () => {
       );
   }, []);
 
-  // Delete a product
   const handleDelete = (id) => {
     axios
       .delete(`http://localhost:5000/api/products/${id}`)
@@ -26,15 +24,12 @@ const ProductList = () => {
       .catch((error) => console.error("Error deleting product:", error));
   };
 
-  // Show a product's details (link or action)
   const handleShow = (id) => {
     console.log(`Show product with id: ${id}`);
-    // You can add routing or a modal to show the product details
   };
-  // Show a product's details (link or action)
+
   const handleEdit = (id) => {
     console.log(`Show product with id: ${id}`);
-    // You can add routing or a modal to show the product details
   };
 
   return (

@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET a single product by ID
+// GET product by ID
 router.get('/:id', async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -25,7 +25,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// CREATE a new product
+// CREATE
 router.post('/', async (req, res) => {
   const product = new Product({
     title: req.body.title,
@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// UPDATE an existing product
+// UPDATE 
 router.put('/:id', async (req, res) => {
   try {
     const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -55,7 +55,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// DELETE a product
+// DELETE 
 router.delete('/:id', async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
